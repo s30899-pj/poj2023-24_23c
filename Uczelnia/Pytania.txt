@@ -1,0 +1,23 @@
+Pyt. 0: Czym różni się interfejs od klasy abstrakcyjnej?
+Odp. 0: Interfejsy definiują abstrakcyjne metody, które muszą być zaimplementowane przez klasy, niezależnie od ich hierarchii dziedziczenia, podczas gdy klasy abstrakcyjne mogą zawierać zarówno metody abstrakcyjne, które muszą być zaimplementowane przez podklasy, jak i metody zaimplementowane, które mogą być dziedziczone przez te podklasy, tworząc hierarchię zachowań.
+
+Pyt. 1: Jaki to może generować problem? 
+Odp. 1: Problemem może być zarządzanie uczniami i grupami, szczególnie kiedy jeden uczeń należy do wielu grup.
+
+Pyt. 2: Czy należy tu użyć klasy abstrakcyjnej, a może zwykły enum wystarczy?
+Od czego to zależy? Zapoznaj się z dwoma zasadami i je opisz: a) YAGNI oraz b) KISS 
+Odp. 2: Użycie klasy abstrakcyjnej a zwykłego enuma zależy od skomplikowania i hierarchii klas. W tym przypadku zwykły enum jest wystarczający.
+a) YAGNI (You Aren't Gonna Need It) - sugeruję, aby nie dodawać funkcjonalności obecnie niepotrzebnych, więc skoro nie ma potrzeby tworzenia
+na ten moment klasy abstrakcyjnej, to lepiej wstrzymać się od tego i uniknąć nadmiarowego kodu.
+b) KISS (Keep It Simple, Stupid) - sugeruję, aby utrzymywać rozwiązania proste i zrozumiałe, więc jeżeli enum spełnia wymagania, to nie ma potrzeby
+tworzenia bardziej skomplikowanych struktur.
+
+Pyt. 3: Czym to zweryfikować? Equals czy Hashcode? Jaka jest różnica między nimi i co to znaczy że te dwie rzeczy mają między sobą kontrakt? 
+Odp. 3: Do zweryfikowania użyjemy metody Equals. Metoda ta porównuje zawrtość obiektów, natomiast Hashcode generuje wartość całkowitą(hash) na podstawie zawartości obiektu.
+Kontrakt pomiędzy tymi dwiema metodami oznacza, że jeśli dwa obiekty są równe wg. Equals, to ich hashe muszą być takie same wg. Hashcode. Oznacza to, że
+implemetując jedną z metodą należy zadbać o odpowiednią implementację drugiej metosy, aby zachować spójność danych i uniknąć nieoczekiwanych zachowaniach podczas
+korzystania z kolekcji opartych na hashu.
+
+Pyt. 4: Jaki wpływ ma zadanie dodatkowe na pyt. 2?
+Odp. 4: Zadanie dodatkowe powoduję potrzebę zamiany enuma na klasę abstrakcyjną, gdyż jest on niewystarczający, ale dalej będziemy korzystać z wcześniej określonego enuma
+w celu nadania dla nowych klas dziedzicznych ograniczonej wartości dla zmiennej type. Dzięki klasie abstrakcyjnej natomiast możemy stworzyc metody abstrakcyjne, które potem zaimplementujemy dla klas dziedzicznych, a co za tym idzie będziemy mogli indywidualnie dostosowywać metody dla danej klasy dziedzicznej.

@@ -1,0 +1,13 @@
+Rodzaje wyjątków w Javie możemy podzielić na dwie główne kategorie: wyjątki kontrolowane(checked exceptions) i wyjątki niekontrolowane(unchecked exceptions)
+1.Wyjątki kontrolowane:
+-wyjątki, które muszą zostać obsłużone przez programistę poprzez użycie "try-catch" lub poprzeez dodanie klauzuli "throw" w deklaracji metody,
+-przykłady: "IOException" lub "SQLException",
+-zazwyczaj związane są z opreacjami wejścia-wyjścia, takimi jak operacje na plikach, czytanie i zapisywanie danych.
+2.Wyjątki niekontrolowane:
+-wyjątki, które nie muszą być obsługiwane lub deklarowane w kodzie,
+-przykłady: "NullPointerException", "ArrayIndexOutOfBoundsException", czy "ArithmeticException",
+-wynikają często z błedów programistycznych lub nieprzewidywalnych sytuacji podczas działania programu.
+
+Różnica pomiędzy @NonNull, a @NotBlank:
+-@NotNull: Zapewnia, że parametr nie może być "null",
+-@NotBlank: Zapewnia, że parametr nie może być ani pusty, ani składać się wyłącznie z białych znaków.

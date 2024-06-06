@@ -1,0 +1,6 @@
+Order: Coffee | Size: M | Sugar: true | Milk: false | Cinnamon: false | Ginger: true | Final Price: 9,10
+Order: Tea | Size: M | Sugar: true | Honey: true | Lemon: false | Syrup: false | Discount: 0,00 | Final Price: 7,80
+Order: Tea | Size: M | Sugar: true | Honey: true | Lemon: false | Syrup: false | Discount: 0,10 | Final Price: 7,02
+Order: Tea | Size: M | Sugar: true | Honey: true | Lemon: false | Syrup: false | Discount: 0,00 | Final Price: 7,80
+Order: Tea | Size: M | Sugar: true | Honey: true | Lemon: false | Syrup: false | Discount: 0,00 | Final Price: 7,80
+Order: Tea | Size: M | Sugar: true | Honey: true | Lemon: false | Syrup: false | Discount: 0,05 | Final Price: 7,41

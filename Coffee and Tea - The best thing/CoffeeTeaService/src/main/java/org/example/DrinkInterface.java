@@ -1,12 +1,12 @@
 package org.example;
 
 public interface DrinkInterface {
-     default void order(){
+    default void order(String choice) {
         chooseSize();
-        chooseAdditions();
+        chooseAdditions(choice);
         calculatePrice();
     }
     void chooseSize();
-    void chooseAdditions();
+    void chooseAdditions(String choice);
     void calculatePrice();
 }

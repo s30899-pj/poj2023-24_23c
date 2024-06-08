@@ -1,11 +1,12 @@
-package org.example.models;
+package org.example.models.drink;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.models.Additions;
+import org.example.models.additions.Additions;
 
 import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor

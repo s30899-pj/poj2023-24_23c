@@ -1,16 +1,15 @@
 package org.example.services;
 
-import org.example.models.Additions;
-import org.example.models.CupSize;
-import org.example.models.DrinkType;
+import org.example.models.additions.Additions;
+import org.example.models.sizes.CupSize;
 
 import java.util.List;
 
 public interface DrinkInterface {
-    default double order() {
-        return calculatePrice(chooseSize(), chooseAdditions());
+    default void order() {
+        calculatePrice(chooseSize(), chooseAdditions());
     }
     CupSize chooseSize();
     List<Additions> chooseAdditions();
-    double calculatePrice(CupSize cupSize, List<Additions> additions);
+    void calculatePrice(CupSize cupSize, List<Additions> additions);
 }

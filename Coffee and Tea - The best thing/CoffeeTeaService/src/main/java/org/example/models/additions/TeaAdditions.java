@@ -1,4 +1,4 @@
-package org.example.models;
+package org.example.models.additions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -8,3 +8,4 @@ Order: Tea | Size: S | Additions: [SUGAR, HONEY] | Discount: 0.00 | Final Price:
 Order: Tea | Size: M | Additions: [SUGAR, HONEY] | Discount: 0.00 | Final Price: 7.80
 Order: Tea | Size: S | Additions: [SUGAR, HONEY] | Discount: 0.00 | Final Price: 5.80
 Order: Tea | Size: M | Additions: [SUGAR, HONEY] | Discount: 0.00 | Final Price: 7.80
+Order: Coffee | Size: M | Additions: [SUGAR, MILK] | Final Price: 8,70

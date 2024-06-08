@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.services.ReduceInterface;
+
 public class DiscountService implements ReduceInterface {
 
     @Override

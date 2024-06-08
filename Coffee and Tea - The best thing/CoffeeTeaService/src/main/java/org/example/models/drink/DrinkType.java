@@ -1,4 +1,4 @@
-package org.example.models;
+package org.example.models.drink;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,8 +6,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum DrinkType {
-    COFFEE("coffee"),
-    TEA("tea");
+    COFFEE("Coffee"),
+    TEA("Tea");
 
     private final String name;
 }

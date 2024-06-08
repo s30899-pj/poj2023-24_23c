@@ -3,8 +3,7 @@ package org.example;
 import lombok.NonNull;
 import org.example.services.CoffeeService;
 import org.example.services.DrinkInterface;
-import org.example.models.DrinkType;
-import org.example.services.OrderService;
+import org.example.models.drink.DrinkType;
 import org.example.services.TeaService;
 
 import java.util.Scanner;
@@ -13,8 +12,6 @@ public class Main {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static DrinkInterface drinkService;
-    private static OrderService service;
-
 
     public static void main(String[] args) {
         switch (chooseDrinkType()) {
@@ -26,8 +23,7 @@ public class Main {
                 break;
         }
 
-        System.out.println("ZAPŁAĆ BO CIĘ ZNAJDĘ");
-        System.out.println(drinkService.order());
+        drinkService.order();
     }
 
     @NonNull

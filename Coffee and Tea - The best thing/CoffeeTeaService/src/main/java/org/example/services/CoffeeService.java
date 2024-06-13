@@ -23,7 +23,13 @@ public class CoffeeService implements DrinkInterface {
     @Override
     public CupSize chooseSize() {
         System.out.print("Choose tea size (S, M, L): ");
-        return CoffeeSizes.valueOf(scanner.nextLine().toUpperCase());
+        try {
+            return CoffeeSizes.valueOf(scanner.nextLine().toUpperCase());
+        } catch (IllegalArgumentException e){
+            System.out.println("Invalid size. Size M was selected by default");
+        }
+
+        return CoffeeSizes.M;
     }
 
 
@@ -53,22 +59,16 @@ public class CoffeeService implements DrinkInterface {
     }
 
     @Override
-    public void calculatePrice(CupSize cupSize, List<Additions> additions) {
-        double price = Arrays.stream(CoffeeSizes.values())
-                .filter(sizeEnum -> sizeEnum == cupSize)
-                .findFirst()
-                .map(CoffeeSizes::getPrice)
-                .orElse(8.0);
+    public double calculatePrice(CupSize cupSize, List<Additions> additions) {
+        double basicPrice =  cupSize.getPrice();
 
-        double additionsPrice = additions.stream()
-                .mapToDouble(addition -> ((CoffeeAdditions) addition).getPrice())
+        basicPrice += additions.stream()
+                .mapToDouble(Additions::getPrice)
                 .sum();
-        price += additionsPrice;
 
-        System.out.println("Total price for coffee: " + String.format("%.2f", price));
+        orderService.saveOrder(additions, basicPrice, cupSize, DrinkType.COFFEE);
 
-        orderService.saveOrder(additions, price, cupSize, DrinkType.COFFEE);
-
+        return basicPrice;
     }
 
 }

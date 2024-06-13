@@ -13,7 +13,6 @@ import org.example.models.sizes.CupSize;
 import org.example.models.sizes.TeaSizes;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -24,14 +23,19 @@ import java.util.stream.Collectors;
 public class TeaService implements DrinkInterface {
     private OrderService orderService = new OrderService();
     private ReduceInterface discountService = new DiscountService();
-    private double discount = 0.0;
     Scanner scanner = new Scanner(System.in);
 
 
     @Override
     public CupSize chooseSize() {
         System.out.print("Choose tea size (S, M, L): ");
-        return TeaSizes.valueOf(scanner.nextLine().toUpperCase());
+        try {
+            return TeaSizes.valueOf(scanner.nextLine().toUpperCase());
+        } catch (IllegalArgumentException e){
+            System.out.println("Invalid size. Size M was selected by default");
+        }
+
+        return TeaSizes.M;
     }
 
     @Override
@@ -39,7 +43,6 @@ public class TeaService implements DrinkInterface {
         System.out.println("Choose coffee additions (enter the numbers separated by commas e.g., 1,3):");
         Arrays.stream(TeaAdditions.values())
                 .forEach(addition -> System.out.println(addition.getNumber() + ". " + addition));
-
         try {
             String[] choices = scanner.nextLine().split(",");
             return Arrays.stream(choices)
@@ -53,43 +56,41 @@ public class TeaService implements DrinkInterface {
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             System.out.println("Invalid input. Please enter numbers separated by commas.");
+            throw e;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            throw e;
         }
-        return Collections.emptyList();
     }
 
     @Override
-    public void calculatePrice(CupSize cupSize, List<Additions> additions) {
-        double price = Arrays.stream(TeaSizes.values())
-                .filter(sizeEnum -> sizeEnum == cupSize)
-                .findFirst()
-                .map(TeaSizes::getPrice)
-                .orElse(8.0);
+    public double calculatePrice(CupSize cupSize, List<Additions> additions) {
+        double basicPrice = cupSize.getPrice();
 
-        double additionsPrice = additions.stream()
-                .mapToDouble(addition -> ((TeaAdditions) addition).getPrice())
+        basicPrice += additions.stream()
+                .mapToDouble(Additions::getPrice)
                 .sum();
-        price += additionsPrice;
 
-        Scanner scanner = new Scanner(System.in);
+        basicPrice *= (1 - getDiscount());
+
+        orderService.saveOrder(additions, basicPrice, cupSize, DrinkType.TEA);
+
+        return basicPrice;
+    }
+
+    public double getDiscount() {
         System.out.println("Do you have a discount code? (Yes/No):");
-        String input = scanner.nextLine();
-        if (input.equalsIgnoreCase("Yes")) {
+
+        if (scanner.nextLine().equalsIgnoreCase("Yes")) {
             System.out.println("Enter the discount code:");
             String code = scanner.nextLine();
             try {
-                discount = discountService.getDiscount(code);
-                System.out.println("Discount code successfully added.");
+                return discountService.getDiscount(code);
             } catch (DiscountCodeException | DiscountCodeExpiredException e) {
                 System.out.println(e.getMessage());
             }
         }
 
-        price *= (1 - discount);
-        System.out.println("Total price for tea: " + String.format("%.2f", price));
-
-        orderService.saveOrder(additions, price, cupSize, DrinkType.TEA);
-
+        return 0;
     }
 }

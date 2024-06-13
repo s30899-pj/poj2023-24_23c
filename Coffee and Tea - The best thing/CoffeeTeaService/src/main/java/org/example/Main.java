@@ -9,8 +9,6 @@ import org.example.services.TeaService;
 import java.util.Scanner;
 
 public class Main {
-
-    private static final Scanner scanner = new Scanner(System.in);
     private static DrinkInterface drinkService;
 
     public static void main(String[] args) {
@@ -23,7 +21,9 @@ public class Main {
                 break;
         }
 
-        drinkService.order();
+        double price = drinkService.order();
+
+        System.out.println("Total price for drink: " + String.format("%.2f", price));
     }
 
     @NonNull
@@ -32,9 +32,9 @@ public class Main {
         System.out.println("Would you like to order coffee or tea? (COFFEE/TEA)");
 
         try {
-            return DrinkType.valueOf(scanner.nextLine().toUpperCase());
-        }catch (IllegalArgumentException e){
-            System.out.println("Invalid size.");
+            return DrinkType.valueOf(new Scanner(System.in).nextLine().toUpperCase());
+        } catch (IllegalArgumentException e){
+            System.out.println("Invalid drink type.");
             throw e;
         }
     }

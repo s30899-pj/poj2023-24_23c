@@ -6,10 +6,10 @@ import org.example.models.sizes.CupSize;
 import java.util.List;
 
 public interface DrinkInterface {
-    default void order() {
-        calculatePrice(chooseSize(), chooseAdditions());
+    default double order() {
+         return calculatePrice(chooseSize(), chooseAdditions());
     }
     CupSize chooseSize();
     List<Additions> chooseAdditions();
-    void calculatePrice(CupSize cupSize, List<Additions> additions);
+    double calculatePrice(CupSize cupSize, List<Additions> additions);
 }

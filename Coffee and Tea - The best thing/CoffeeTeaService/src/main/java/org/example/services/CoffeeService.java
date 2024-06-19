@@ -52,10 +52,11 @@ public class CoffeeService implements DrinkInterface {
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             System.out.println("Invalid input. Please enter numbers separated by commas.");
+            throw e;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            throw e;
         }
-        return Collections.emptyList();
     }
 
     @Override

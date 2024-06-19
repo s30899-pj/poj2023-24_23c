@@ -1,7 +1,6 @@
 package org.example.services;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.example.DiscountCodeException;
 import org.example.DiscountCodeExpiredException;
@@ -19,12 +18,10 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class TeaService implements DrinkInterface {
     private OrderService orderService = new OrderService();
     private ReduceInterface discountService = new DiscountService();
     Scanner scanner = new Scanner(System.in);
-
 
     @Override
     public CupSize chooseSize() {
